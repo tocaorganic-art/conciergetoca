@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Balneário v4.0 - Toca Concierge</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🏖️</div>
+                <h1>Balneário</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="visao-geral">
+                    <span class="icon">📊</span>
+                    <span>Visão Geral</span>
+                    <span class="badge">2</span>
+                </a>
+                <a href="#" class="nav-item" data-page="eventos">
+                    <span class="icon">📅</span>
+                    <span>Eventos</span>
+                    <span class="badge warning">1</span>
+                </a>
+                <a href="#" class="nav-item" data-page="financeiro">
+                    <span class="icon">💰</span>
+                    <span>Financeiro</span>
+                    <span class="badge danger">4</span>
+                </a>
+                <a href="#" class="nav-item" data-page="documentos">
+                    <span class="icon">📄</span>
+                    <span>Documentos</span>
+                    <span class="badge">5</span>
+                </a>
+                <a href="#" class="nav-item" data-page="cronograma">
+                    <span class="icon">👥</span>
+                    <span>Cronograma</span>
+                    <span class="badge info">6</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Visão Geral Page -->
+            <div id="visao-geral" class="page active">
+                <header class="page-header">
+                    <h2>Visão Geral</h2>
+                    <p class="subtitle">Dashboard completo do Sistema de Gestão de Balneário</p>
+                </header>
+
+                <!-- Cards de Resumo -->
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-icon">📅</span>
+                            <span class="card-title">Total de Eventos</span>
+                        </div>
+                        <div class="card-value">1</div>
+                        <div class="card-footer">Eventos cadastrados</div>
+                    </div>
+
+                    <div class="card highlight-green">
+                        <div class="card-header">
+                            <span class="card-icon">💵</span>
+                            <span class="card-title">Adiantamento Cliente</span>
+                        </div>
+                        <div class="card-value">R$ 50.275,50</div>
+                        <div class="card-footer">Valor recebido do cliente</div>
+                    </div>
+
+                    <div class="card highlight-blue">
+                        <div class="card-header">
+                            <span class="card-icon">💰</span>
+                            <span class="card-title">Total Pago Até Agora</span>
+                        </div>
+                        <div class="card-value">R$ 52.928,54</div>
+                        <div class="card-footer">Todas as contas pagas</div>
+                    </div>
+
+                    <div class="card highlight-red">
+                        <div class="card-header">
+                            <span class="card-icon">🔴</span>
+                            <span class="card-title">Diferença Tony (Bolso)</span>
+                        </div>
+                        <div class="card-value">R$ 6.277,48</div>
+                        <div class="card-footer">Valor pago por Tony</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-icon">📊</span>
+                            <span class="card-title">Valor Total Geral</span>
+                        </div>
+                        <div class="card-value">R$ 99.702,98</div>
+                        <div class="card-footer">Soma de todas as despesas</div>
+                    </div>
+
+                    <div class="card highlight-orange">
+                        <div class="card-header">
+                            <span class="card-icon">📅</span>
+                            <span class="card-title">Saldo Pendente (13/11)</span>
+                        </div>
+                        <div class="card-value">R$ 48.427,48</div>
+                        <div class="card-footer">Contas a pagar</div>
+                    </div>
+
+                    <div class="card highlight-red">
+                        <div class="card-header">
+                            <span class="card-icon">🔴</span>
+                            <span class="card-title">Diferença Tony a Receber</span>
+                        </div>
+                        <div class="card-value">R$ 5.727,48</div>
+                        <div class="card-footer">Reembolso em 13/11</div>
+                    </div>
+
+                    <div class="card highlight-urgent">
+                        <div class="card-header">
+                            <span class="card-icon">💳</span>
+                            <span class="card-title">TOTAL A PAGAR 13/11</span>
+                        </div>
+                        <div class="card-value">R$ 54.154,96</div>
+                        <div class="card-footer urgent">⚠️ URGENTE - 9 dias restantes</div>
+                    </div>
+                </div>
+
+                <!-- Gráficos -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h3>Análise Financeira - Três Categorias</h3>
+                        <canvas id="chartFinanceiro"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Proporção Financeira</h3>
+                        <canvas id="chartProporcao"></canvas>
+                    </div>
+                </div>
+
+                <!-- Próximos Eventos -->
+                <div class="section">
+                    <h3>Próximos Eventos</h3>
+                    <p class="section-subtitle">Eventos agendados para os próximos dias</p>
+                    <div class="event-card">
+                        <div class="event-info">
+                            <h4>Toca Concierge — Esta Balneário</h4>
+                            <p>Balneário Camboriú</p>
+                        </div>
+                        <div class="event-date">
+                            <span class="date">16/11/2025</span>
+                            <span class="status status-planned">Planned</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerta Urgente -->
+                <div class="alert alert-danger">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h4>Pagamento Urgente - Vence em 9 dias</h4>
+                        <p>Total a pagar em 13/11/2025: <strong>R$ 54.154,96</strong></p>
+                        <p>Inclui: Saldo Pendente (R$ 48.427,48) + Reembolso Tony (R$ 5.727,48)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eventos Page -->
+            <div id="eventos" class="page">
+                <header class="page-header">
+                    <h2>Gestão de Eventos</h2>
+                    <p class="subtitle">Gerenciamento completo de eventos do balneário</p>
+                </header>
+
+                <div class="event-detail-card">
+                    <div class="event-header">
+                        <h3>Toca Concierge — Esta Balneário</h3>
+                        <span class="status status-planned">Planned</span>
+                    </div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <span class="detail-label">📍 Local:</span>
+                            <span class="detail-value">Balneário Camboriú, SC</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">📅 Data de Início:</span>
+                            <span class="detail-value">16/11/2025</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">📅 Data de Término:</span>
+                            <span class="detail-value">23/11/2025</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">👥 Participantes:</span>
+                            <span class="detail-value">15 pessoas</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">💰 Orçamento Total:</span>
+                            <span class="detail-value">R$ 99.702,98</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">💵 Adiantamento Cliente:</span>
+                            <span class="detail-value">R$ 50.275,50</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">💰 Total Pago:</span>
+                            <span class="detail-value">R$ 52.928,54</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔴 Diferença Tony:</span>
+                            <span class="detail-value">R$ 6.277,48</span>
+                        </div>
+                    </div>
+                    <div class="event-description">
+                        <h4>Descrição</h4>
+                        <p>Evento exclusivo de concierge no balneário, incluindo hospedagem em casa principal, aluguel de veículo, equipe de serviços, som e iluminação, reserva financeira para imprevistos, e todos os serviços de apoio necessários.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financeiro Page -->
+            <div id="financeiro" class="page">
+                <header class="page-header">
+                    <h2>Gestão Financeira</h2>
+                    <p class="subtitle">Acompanhe receitas, despesas e saldos com três categorias</p>
+                    <button class="btn-primary">Novo Registro</button>
+                </header>
+
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">Toca Concierge — Esta Balneário</button>
+                </div>
+
+                <!-- Cards Financeiros -->
+                <div class="financial-cards">
+                    <div class="financial-card green">
+                        <div class="financial-header">
+                            <span class="icon">💵</span>
+                            <span class="title">Adiantamento Cliente</span>
+                        </div>
+                        <div class="financial-value">R$ 50.275,50</div>
+                        <div class="financial-detail">11 registros</div>
+                    </div>
+
+                    <div class="financial-card blue">
+                        <div class="financial-header">
+                            <span class="icon">💰</span>
+                            <span class="title">Total Pago Até Agora</span>
+                        </div>
+                        <div class="financial-value">R$ 52.928,54</div>
+                        <div class="financial-detail">Todas as contas pagas</div>
+                    </div>
+
+                    <div class="financial-card red">
+                        <div class="financial-header">
+                            <span class="icon">🔴</span>
+                            <span class="title">Diferença Tony (Bolso)</span>
+                        </div>
+                        <div class="financial-value">R$ 6.277,48</div>
+                        <div class="financial-detail">Valor pago por Tony</div>
+                    </div>
+
+                    <div class="financial-card gray">
+                        <div class="financial-header">
+                            <span class="icon">📊</span>
+                            <span class="title">Valor Total Geral</span>
+                        </div>
+                        <div class="financial-value">R$ 99.702,98</div>
+                        <div class="financial-detail">Soma de todas as despesas</div>
+                    </div>
+
+                    <div class="financial-card orange">
+                        <div class="financial-header">
+                            <span class="icon">📅</span>
+                            <span class="title">Saldo Pendente (13/11)</span>
+                        </div>
+                        <div class="financial-value">R$ 48.427,48</div>
+                        <div class="financial-detail">A pagar</div>
+                    </div>
+
+                    <div class="financial-card urgent">
+                        <div class="financial-header">
+                            <span class="icon">⚠️</span>
+                            <span class="title">% Antecipação Média</span>
+                        </div>
+                        <div class="financial-value">50,4%</div>
+                        <div class="financial-detail">Média de pagamentos</div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Registros -->
+                <div class="table-section">
+                    <h3>Registros Financeiros</h3>
+                    <p class="section-subtitle">Lista de todas as transações (11 registros)</p>
+                    <div class="table-container">
+                        <table class="financial-table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Categoria</th>
+                                    <th>Adiantamento Cliente</th>
+                                    <th>Valor Total</th>
+                                    <th>A Pagar 13/11</th>
+                                    <th>% Antecip</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Latam Aéreo</td>
+                                    <td><span class="category-badge transport">Transportando CDJ</span></td>
+                                    <td class="value-green">R$ 2.175,50</td>
+                                    <td class="value-blue">R$ 2.523,44</td>
+                                    <td class="value-orange">R$ 347,94</td>
+                                    <td>86%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Movida</td>
+                                    <td><span class="category-badge transport">Aluguel de Carro</span></td>
+                                    <td class="value-green">R$ 2.900,00</td>
+                                    <td class="value-blue">R$ 3.211,00</td>
+                                    <td class="value-orange">R$ 311,00</td>
+                                    <td>90%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Empresa Sublime</td>
+                                    <td><span class="category-badge service">Equipe Serviços Casa</span></td>
+                                    <td class="value-green">R$ 2.125,00</td>
+                                    <td class="value-blue">R$ 6.640,00</td>
+                                    <td class="value-orange">R$ 4.515,00</td>
+                                    <td>32%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>AA Music</td>
+                                    <td><span class="category-badge service">Som e Iluminação</span></td>
+                                    <td class="value-green">R$ 2.750,00</td>
+                                    <td class="value-blue">R$ 5.500,00</td>
+                                    <td class="value-orange">R$ 2.750,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Reserva financeira p/ compras</td>
+                                    <td><span class="category-badge general">Serviços Gerais</span></td>
+                                    <td class="value-green">R$ 5.000,00</td>
+                                    <td class="value-blue">R$ 10.000,00</td>
+                                    <td class="value-orange">R$ 5.000,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Concierge Tony</td>
+                                    <td><span class="category-badge organizer">Organizador</span></td>
+                                    <td class="value-green">R$ 7.500,00</td>
+                                    <td class="value-blue">R$ 15.000,00</td>
+                                    <td class="value-orange">R$ 7.500,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Van p/ 15 pessoas</td>
+                                    <td><span class="category-badge transport">8h de disponibilidade</span></td>
+                                    <td class="value-green">R$ 950,00</td>
+                                    <td class="value-blue">R$ 1.900,00</td>
+                                    <td class="value-orange">R$ 950,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>04/11/2025</td>
+                                    <td>Massoterapeuta</td>
+                                    <td><span class="category-badge service">Serviços Pessoais</span></td>
+                                    <td class="value-red">R$ 0,00</td>
+                                    <td class="value-blue">R$ 2.000,00</td>
+                                    <td class="value-orange">R$ 1.000,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Aluguel da Casa Principal</td>
+                                    <td><span class="category-badge house">Casa</span></td>
+                                    <td class="value-green">R$ 21.875,00</td>
+                                    <td class="value-blue">R$ 43.750,00</td>
+                                    <td class="value-orange">R$ 21.875,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Caução Casa Principal</td>
+                                    <td><span class="category-badge house">Casa</span></td>
+                                    <td class="value-green">R$ 2.500,00</td>
+                                    <td class="value-blue">R$ 5.000,00</td>
+                                    <td class="value-orange">R$ 2.500,00</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>22/09/2025</td>
+                                    <td>Airbnb Staff 16 a 24 de nov</td>
+                                    <td><span class="category-badge house">Casa</span></td>
+                                    <td class="value-green">R$ 2.500,00</td>
+                                    <td class="value-blue">R$ 4.178,54</td>
+                                    <td class="value-orange">R$ 1.678,54</td>
+                                    <td>60%</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="3"><strong>TOTAL GERAL</strong></td>
+                                    <td class="value-green"><strong>R$ 50.275,50</strong></td>
+                                    <td class="value-blue"><strong>R$ 99.702,98</strong></td>
+                                    <td class="value-orange"><strong>R$ 48.427,48</strong></td>
+                                    <td><strong>50,4%</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Observações -->
+                <div class="alert alert-info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Sobre a "Diferença Tony"</h4>
+                        <p><strong>R$ 6.277,48</strong> é o valor que Tony pagou do próprio bolso porque algumas despesas ultrapassaram o adiantamento do cliente.</p>
+                        <p><strong>Exemplo:</strong> Passagem aérea - Cliente antecipou R$ 2.175,50, mas o valor final foi R$ 2.523,44.</p>
+                        <p><strong>Reembolso:</strong> R$ 5.727,48 serão quitados em 13/11/2025 junto com as outras contas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentos Page -->
+            <div id="documentos" class="page">
+                <header class="page-header">
+                    <h2>Gestão de Documentos</h2>
+                    <p class="subtitle">Contratos e documentos do evento</p>
+                </header>
+
+                <div class="documents-grid">
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h4>Contrato Casa Principal</h4>
+                            <p>Pasta de arquivos</p>
+                            <span class="document-date">04/11/2025 18:19</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h4>Cronograma Funcionários da casa</h4>
+                            <p>Pasta de arquivos</p>
+                            <span class="document-date">04/11/2025 18:08</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h4>Eventos</h4>
+                            <p>Pasta de arquivos</p>
+                            <span class="document-date">31/10/2025 13:23</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h4>Financeiro Geral</h4>
+                            <p>Pasta de arquivos</p>
+                            <span class="document-date">04/11/2025 18:13</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h4>Recibos de Pagamento</h4>
+                            <p>Pasta de arquivos</p>
+                            <span class="document-date">04/11/2025 18:13</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h4>📋 Chegada de Clientes</h4>
+                            <p>Adobe Acrobat Document - 29 KB</p>
+                            <span class="document-date">04/11/2025 18:42</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-success">
+                    <div class="alert-icon">✅</div>
+                    <div class="alert-content">
+                        <h4>Contratos Consolidados</h4>
+                        <p>5 contratos principais foram processados e estão disponíveis:</p>
+                        <ul>
+                            <li>Contrato Casa Principal (R$ 53.750,00)</li>
+                            <li>Contrato Airbnb (R$ 4.178,54)</li>
+                            <li>Contrato Movida (R$ 3.211,00)</li>
+                            <li>Contrato Funcionários (R$ 6.640,00)</li>
+                            <li>Contrato Equipamentos (R$ 5.500,00)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cronograma Page -->
+            <div id="cronograma" class="page">
+                <header class="page-header">
+                    <h2>Cronograma de Funcionários</h2>
+                    <p class="subtitle">Gestão de equipe e escalas de trabalho</p>
+                </header>
+
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <div class="stat-value">20</div>
+                            <div class="stat-label">Funcionários Ativos</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Dias de Evento</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-info">
+                            <div class="stat-value">16-23/11</div>
+                            <div class="stat-label">Período</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Equipe de Serviços</h4>
+                        <p>A equipe de 20 funcionários está escalada para o período de 16 a 23 de novembro de 2025.</p>
+                        <p><strong>Serviços incluídos:</strong> Limpeza, cozinha, manutenção, segurança, recepção e concierge.</p>
+                        <p><strong>Contrato:</strong> Empresa Sublime (R$ 6.640,00)</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
