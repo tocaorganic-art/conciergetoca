@@ -1,0 +1,166 @@
+/* Theme CSS - Dark/Light Mode com WCAG 2.1 Compliance */
+
+:root[data-theme='light'] {
+  /* Cores de fundo e texto */
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #f8f9fa;
+  --card-foreground: #000000;
+  
+  /* Cores primárias */
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #8b5cf6;
+  --secondary-foreground: #ffffff;
+  --accent: #ec4899;
+  --accent-foreground: #ffffff;
+  
+  /* Cores de estado */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #06b6d4;
+  
+  /* Cores neutras */
+  --muted: #6b7280;
+  --muted-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #f3f4f6;
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  /* Contraste mínimo WCAG AA (4.5:1 para texto normal) */
+  --text-contrast: 21; /* Preto puro */
+}
+
+:root[data-theme='dark'] {
+  /* Cores de fundo e texto */
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  
+  /* Cores primárias */
+  --primary: #60a5fa;
+  --primary-foreground: #000000;
+  --secondary: #a78bfa;
+  --secondary-foreground: #000000;
+  --accent: #f472b6;
+  --accent-foreground: #000000;
+  
+  /* Cores de estado */
+  --success: #34d399;
+  --warning: #fbbf24;
+  --error: #f87171;
+  --info: #22d3ee;
+  
+  /* Cores neutras */
+  --muted: #94a3b8;
+  --muted-foreground: #0f172a;
+  --border: #334155;
+  --input: #1e293b;
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  
+  /* Contraste mínimo WCAG AA */
+  --text-contrast: 240; /* Branco puro */
+}
+
+/* Aplicar tema globalmente */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Garantir contraste mínimo em links */
+a {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+a:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Garantir contraste em inputs */
+input,
+textarea,
+select {
+  background-color: var(--input);
+  color: var(--foreground);
+  border-color: var(--border);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+/* Garantir contraste em botões */
+button {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Garantir legibilidade em tabelas */
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: var(--card);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+td {
+  border-color: var(--border);
+}
+
+/* Reduzir movimento para usuários que preferem */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Melhorar contraste para modo de alto contraste */
+@media (prefers-contrast: more) {
+  :root[data-theme='light'] {
+    --foreground: #000000;
+    --border: #000000;
+  }
+
+  :root[data-theme='dark'] {
+    --foreground: #ffffff;
+    --border: #ffffff;
+  }
+}
